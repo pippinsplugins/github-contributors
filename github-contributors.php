@@ -25,15 +25,22 @@ function pw_get_github_contributors( $atts, $content = null ) {
 
 
 	if ( is_array( $contributors ) ) {
-    $contrib_list = '<div id="pw_github_contributors" class="pw_gh_' . strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) . '">';
+    $contrib_list = sprintf( '<div id="pw_github_contributors" class="pw_gh_%s">',
+    	esc_attr( strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) )
+    );
+
     foreach ( $contributors as $contributor ) {
     	$contrib_list .= '<div class="pw_gh_contributor" style="width: 120px; display: inline-block;">';
-  		$contrib_list .= '<a href="https://github.com/' . $contributor->login . '" title="' . sprintf( __('View %s', 'pw_github'), $contributor->login ) . '">';
-			$contrib_list .= '<img src="' . $contributor->avatar_url . '" width="80" height="80"/>';
-			$contrib_list .= '<p class="pw_gh_name">' . $contributor->login . '</p>';
+  		$contrib_list .= sprintf( '<a href="%s" title="%s">',
+  			esc_url( 'https://github.com/' . $contributor->login ),
+  			esc_html( sprintf( __('View %s', 'pw_github'), $contributor->login ) )
+  		);
+			$contrib_list .= sprintf( '<img src="%s" width="80" height="80"/>', esc_url( $contributor->avatar_url ) );
+			$contrib_list .= sprintf( '<p class="pw_gh_name">%s</p>', esc_html( $contributor->login ) );
   		$contrib_list .= '</a>';
     	$contrib_list .= '</div>';
     }
+
     $contrib_list .= '</div>';
 
     return $contrib_list;
