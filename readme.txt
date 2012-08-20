@@ -33,6 +33,7 @@ You can see this live on the Contributors page for [Easy Digital Downloads](http
 
 = 1.0.1 =
 
+* Updated the transient key to use an MD5 to avoid it breaking if the repo / username is too long
 * Escaped a couple of possibly unsafe values
 * Updated some formatting with indention, whitespace, double quotes
 * Failed responses are now cached
@@ -45,6 +46,7 @@ You can see this live on the Contributors page for [Easy Digital Downloads](http
 
 = 1.0.1 =
 
+* Updated the transient key to use an MD5 to avoid it breaking if the repo / username is too long
 * Escaped a couple of possibly unsafe values
 * Updated some formatting with indention, whitespace, double quotes
 * Failed responses are now cached
