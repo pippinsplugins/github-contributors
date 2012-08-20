@@ -17,7 +17,7 @@ function pw_get_github_contributors( $atts, $content = null ) {
 		), $atts )
 	);
 
-  $transient_key = 'pw_gh_' . $username . '_' . $repo;
+  $transient_key = "pw_gh_{$username}_{$repo}";
 
   $contributors = get_transient( $transient_key );
   if ( false === $contributors )
