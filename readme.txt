@@ -1,6 +1,6 @@
 === Github Contributors ===
 Author URI: http://pippinsplugins.com
-Plugin URI: http://pippinsplugins.com/github-contributors
+Plugin URI: http://pippinsplugins.com/github-contributors-plugin/
 Contributors: mordauk
 Donate link: http://pippinsplugins.com/support-the-site
 Tags: github, contributors, mordauk, Pippin Williamson, pippinsplugins

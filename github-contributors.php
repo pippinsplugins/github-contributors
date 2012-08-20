@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Github Contributors Short Code
-Plugin URI: http://pippinsplugins.com/
+Plugin URI: http://pippinsplugins.com/github-contributors-plugin/
 Description: Displays a list of all contributors of any project/repo on Github
 Author: Pippin Williamson
 Author URI: http://pippinsplugins.com
