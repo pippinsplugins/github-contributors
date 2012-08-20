@@ -13,7 +13,7 @@ Version: 1.0
 function pw_get_github_contributors( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 			'username' => 'Automattic',
-			'repo' => '_s'
+			'repo'     => '_s'
 		), $atts )
 	);
 
