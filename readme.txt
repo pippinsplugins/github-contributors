@@ -6,7 +6,7 @@ Donate link: http://pippinsplugins.com/support-the-site
 Tags: github, contributors, mordauk, Pippin Williamson, pippinsplugins
 Requires at least: 3.2
 Tested up to: 3.4.1
-Stable Tag: 1.0
+Stable Tag: 1.0.1
 
 Provides a simple short code for displaying a list of contributors from any Github repository.
 
@@ -31,11 +31,23 @@ You can see this live on the Contributors page for [Easy Digital Downloads](http
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Escaped a couple of possibly unsafe values
+* Updated some formatting with indention, whitespace, double quotes
+* Failed responses are now cached
+
 = 1.0 =
 
 * First offical release!
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+
+* Escaped a couple of possibly unsafe values
+* Updated some formatting with indention, whitespace, double quotes
+* Failed responses are now cached
 
 = 1.0 =
 
