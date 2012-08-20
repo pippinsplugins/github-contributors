@@ -18,6 +18,8 @@ It's a great way to show off the people that have helped with your project.
 
 You can see this live on the Contributors page for [Easy Digital Downloads](http://easydigitaldownloads.com/contributors/).
 
+Based on the code by [Konstantin Kovshenin](http://kovshenin.com/2012/how-to-get-a-list-of-contributors-from-a-github-project/).
+
 == Installation ==
 
 1. Upload to wp-content/plugins/
