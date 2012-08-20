@@ -20,19 +20,10 @@ function pw_get_github_contributors( $atts, $content = null ) {
     $transient_key = 'pw_gh_' . $username . '_' . $repo;
 
     $contributors = get_transient( $transient_key );
-    if ( false === $contributors ) {
-     
-	    $response = wp_remote_get( 'https://api.github.com/repos/' . $username . '/' . $repo . '/contributors' );
-	    if ( is_wp_error( $response ) )
-	        return array();
+    if ( false === $contributors )
+    	$contributors = pw_get_github_contributors_query( $username, $repo, $transient_key );
 
-	    $contributors = json_decode( wp_remote_retrieve_body( $response ) );
-	    if ( ! is_array( $contributors ) )
-	        return ''; // show nothing.
 
-	    set_transient( $transient_key, $contributors, 3600 );
-
-	}
 	if( is_array( $contributors ) ) { 
 	    $contrib_list = '<div id="pw_github_contributors" class="pw_gh_' . strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) . '">';
 	    foreach( $contributors as $contributor ) {
@@ -49,3 +40,21 @@ function pw_get_github_contributors( $atts, $content = null ) {
 	}
 }
 add_shortcode('github_contributors', 'pw_get_github_contributors');
+
+function pw_get_github_contributors_query( $username, $repo, $transient_key ) {
+	$response = wp_remote_get( 'https://api.github.com/repos/' . $username . '/' . $repo . '/contributors' );
+
+	if ( is_wp_error( $response ) ) {
+		return array();
+		set_transient( $transient_key, '', 3600 );
+	}
+
+	$contributors = json_decode( wp_remote_retrieve_body( $response ) );
+	if ( ! is_array( $contributors ) ) {
+		return '';
+		set_transient( $transient_key, '', 3600 );
+	}
+
+	set_transient( $transient_key, $contributors, 3600 );
+	return $contributors;
+}
