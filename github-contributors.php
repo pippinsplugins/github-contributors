@@ -42,7 +42,7 @@ function pw_get_github_contributors( $atts, $content = null ) {
 add_shortcode('github_contributors', 'pw_get_github_contributors');
 
 function pw_get_github_contributors_query( $username, $repo, $transient_key ) {
-	$response = wp_remote_get( 'https://api.github.com/repos/' . $username . '/' . $repo . '/contributors' );
+	$response = wp_remote_get( "https://api.github.com/repos/{$username}/{$repo}/contributors" );
 
 	if ( is_wp_error( $response ) ) {
 		return array();
