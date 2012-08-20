@@ -23,28 +23,28 @@ function pw_get_github_contributors( $atts, $content = null ) {
 	if ( false === $contributors )
 		$contributors = pw_get_github_contributors_query( $username, $repo, $transient_key );
 
+	if ( ! is_array( $contributors ) )
+		return '';
 
-	if ( is_array( $contributors ) ) {
-		$contrib_list = sprintf( '<div id="pw_github_contributors" class="pw_gh_%s">',
-			esc_attr( strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) )
+	$contrib_list = sprintf( '<div id="pw_github_contributors" class="pw_gh_%s">',
+		esc_attr( strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) )
+	);
+
+	foreach ( $contributors as $contributor ) {
+		$contrib_list .= '<div class="pw_gh_contributor" style="width: 120px; display: inline-block;">';
+		$contrib_list .= sprintf( '<a href="%s" title="%s">',
+			esc_url( 'https://github.com/' . $contributor->login ),
+			esc_html( sprintf( __('View %s', 'pw_github'), $contributor->login ) )
 		);
-
-		foreach ( $contributors as $contributor ) {
-			$contrib_list .= '<div class="pw_gh_contributor" style="width: 120px; display: inline-block;">';
-			$contrib_list .= sprintf( '<a href="%s" title="%s">',
-				esc_url( 'https://github.com/' . $contributor->login ),
-				esc_html( sprintf( __('View %s', 'pw_github'), $contributor->login ) )
-			);
-			$contrib_list .= sprintf( '<img src="%s" width="80" height="80"/>', esc_url( $contributor->avatar_url ) );
-			$contrib_list .= sprintf( '<p class="pw_gh_name">%s</p>', esc_html( $contributor->login ) );
-			$contrib_list .= '</a>';
-			$contrib_list .= '</div>';
-		}
-
+		$contrib_list .= sprintf( '<img src="%s" width="80" height="80"/>', esc_url( $contributor->avatar_url ) );
+		$contrib_list .= sprintf( '<p class="pw_gh_name">%s</p>', esc_html( $contributor->login ) );
+		$contrib_list .= '</a>';
 		$contrib_list .= '</div>';
-
-		return $contrib_list;
 	}
+
+	$contrib_list .= '</div>';
+
+	return $contrib_list;
 }
 add_shortcode('github_contributors', 'pw_get_github_contributors');
 
