@@ -54,7 +54,7 @@ function pw_get_github_contributors_query( $username, $repo, $transient_key ) {
 
 	if ( is_wp_error( $response ) ) {
 		set_transient( $transient_key, '', 3600 );
-		return flase;
+		return false;
 	}
 
 	$contributors = json_decode( wp_remote_retrieve_body( $response ) );
