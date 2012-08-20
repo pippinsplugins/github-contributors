@@ -6,7 +6,8 @@ Plugin URI: http://pippinsplugins.com/
 Description: Displays a list of all contributors of any project/repo on Github
 Author: Pippin Williamson
 Author URI: http://pippinsplugins.com
-Version: 1.0
+Contributors: mordauk
+Version: 1.0.1
 */
 
 
@@ -52,14 +53,14 @@ function pw_get_github_contributors_query( $username, $repo, $transient_key ) {
 	$response = wp_remote_get( "https://api.github.com/repos/{$username}/{$repo}/contributors" );
 
 	if ( is_wp_error( $response ) ) {
-		return array();
 		set_transient( $transient_key, '', 3600 );
+		return flase;
 	}
 
 	$contributors = json_decode( wp_remote_retrieve_body( $response ) );
 	if ( ! is_array( $contributors ) ) {
-		return '';
 		set_transient( $transient_key, '', 3600 );
+		return false;
 	}
 
 	set_transient( $transient_key, $contributors, 3600 );
