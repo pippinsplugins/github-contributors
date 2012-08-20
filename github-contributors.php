@@ -17,26 +17,26 @@ function pw_get_github_contributors( $atts, $content = null ) {
 		), $atts )
 	);
 
-    $transient_key = 'pw_gh_' . $username . '_' . $repo;
+  $transient_key = 'pw_gh_' . $username . '_' . $repo;
 
-    $contributors = get_transient( $transient_key );
-    if ( false === $contributors )
-    	$contributors = pw_get_github_contributors_query( $username, $repo, $transient_key );
+  $contributors = get_transient( $transient_key );
+  if ( false === $contributors )
+  	$contributors = pw_get_github_contributors_query( $username, $repo, $transient_key );
 
 
 	if( is_array( $contributors ) ) { 
-	    $contrib_list = '<div id="pw_github_contributors" class="pw_gh_' . strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) . '">';
-	    foreach( $contributors as $contributor ) {
-	    	$contrib_list .= '<div class="pw_gh_contributor" style="width: 120px; display: inline-block;">';
-	    		$contrib_list .= '<a href="https://github.com/' . $contributor->login . '" title="' . sprintf( __('View %s', 'pw_github'), $contributor->login ) . '">';
-	    			$contrib_list .= '<img src="' . $contributor->avatar_url . '" width="80" height="80"/>';
-	    			$contrib_list .= '<p class="pw_gh_name">' . $contributor->login . '</p>';
-	    		$contrib_list .= '</a>';
-	    	$contrib_list .= '</div>';
-	    }
-	    $contrib_list .= '</div>';
+    $contrib_list = '<div id="pw_github_contributors" class="pw_gh_' . strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) . '">';
+    foreach( $contributors as $contributor ) {
+    	$contrib_list .= '<div class="pw_gh_contributor" style="width: 120px; display: inline-block;">';
+  		$contrib_list .= '<a href="https://github.com/' . $contributor->login . '" title="' . sprintf( __('View %s', 'pw_github'), $contributor->login ) . '">';
+			$contrib_list .= '<img src="' . $contributor->avatar_url . '" width="80" height="80"/>';
+			$contrib_list .= '<p class="pw_gh_name">' . $contributor->login . '</p>';
+  		$contrib_list .= '</a>';
+    	$contrib_list .= '</div>';
+    }
+    $contrib_list .= '</div>';
 
-	    return $contrib_list;
+    return $contrib_list;
 	}
 }
 add_shortcode('github_contributors', 'pw_get_github_contributors');
