@@ -10,7 +10,7 @@ Version: 1.0
 */
 
 
-function pw_get_github_contributors( $atts, $content = null ) {	
+function pw_get_github_contributors( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 			'username' => 'Automattic',
 			'repo' => '_s'
@@ -24,7 +24,7 @@ function pw_get_github_contributors( $atts, $content = null ) {
   	$contributors = pw_get_github_contributors_query( $username, $repo, $transient_key );
 
 
-	if( is_array( $contributors ) ) { 
+	if( is_array( $contributors ) ) {
     $contrib_list = '<div id="pw_github_contributors" class="pw_gh_' . strtolower( $username ) . '_' . strtolower( str_replace('-', '_', $repo ) ) . '">';
     foreach( $contributors as $contributor ) {
     	$contrib_list .= '<div class="pw_gh_contributor" style="width: 120px; display: inline-block;">';
